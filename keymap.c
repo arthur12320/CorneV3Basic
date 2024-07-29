@@ -67,19 +67,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * ,-----------------------------------.   ,-----------------------------------.
     * | tab |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | del |
     * |-----+-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----+-----|
-    * | sft |     |     |  ↑  |     |  W↑ |   |  ←  |  ↓  |  ↑  |  →  |     |     |
+    * | sft |     |     |     |     |     |   |  ←  |  ↓  |  ↑  |  →  |     |     |
     * |-----+-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----+-----|
-    * | ctl |     |  ←  |  ↓  |  →  |  W↓ |   | ms1 | ms2 |     |     |     | esc |
+    * | ctl |     |     |     |     |     |   | ms1 | ms2 |     |     |  ?  | esc |
     * `-----------------+-----+-----+-----|   |-----+-----+-----+-----------------'
     *                   | gui | fn1 | ent |   | spc | fn2 | alt |
     *                   `-----+-----+-----'   `-----+-----+-----'
     */
 
     [_MOVE] = LAYOUT_split_3x6_3(
-        KC_TAB,           KC_1,    KC_2,       KC_3,       KC_4,        KC_5,                   KC_6,       KC_7,        KC_8,    KC_9,     KC_0,    KC_DEL,
-        TD(TD_LSFT_CAPS), XXXXXXX, XXXXXXX,    KC_MS_UP,   XXXXXXX,     KC_MS_WH_UP,            KC_LEFT,    KC_DOWN,     KC_UP,   KC_RIGHT, XXXXXXX, XXXXXXX,
-        KC_LCTL,          XXXXXXX, KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT, KC_MS_WH_DOWN,          KC_MS_BTN1, KC_MS_BTN2,  XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX,
-                                               KC_LGUI,    _______,     KC_ENT,                 KC_SPC,     MO(_CONFIG), KC_LALT
+        KC_TAB,           KC_1,    KC_2,    KC_3,     KC_4,    KC_5,             KC_6,       KC_7,        KC_8,    KC_9,     KC_0,    KC_DEL,
+        TD(TD_LSFT_CAPS), XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX,          KC_LEFT,    KC_DOWN,     KC_UP,   KC_RIGHT, XXXXXXX, XXXXXXX,
+        KC_LCTL,          XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX,          KC_MS_BTN1, KC_MS_BTN2,  XXXXXXX, XXXXXXX,  KC_QUES, XXXXXXX,
+                                            KC_LGUI,  _______, KC_ENT,           KC_SPC,     MO(_CONFIG), KC_LALT
     ),
 
     /* SPECIAL layer
@@ -88,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * |-----+-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----+-----|
     * | sft |  ~  |  '  |  ^  |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `  |
     * |-----+-----+-----+-----+-----+-----|   |-----+-----+-----+-----+-----+-----|
-    * | ctl |     |     |  ç  |     |     |   |  _  |  +  |  {  |  }  |  |  |  ~  |
+    * | ctl |     |     |  ç  |     | prt |   |  _  |  +  |  {  |  }  |  |  |  ~  |
     * `-----------------+-----+-----+-----|   |-----+-----+-----+-----------------'
     *                   | gui | fn1 | ent |   | spc | fn2 | alt |
     *                   `-----+-----+-----'   `-----+-----+-----'
@@ -97,25 +97,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_SPECIAL] = LAYOUT_split_3x6_3(
         KC_TAB,           KC_EXLM, KC_AT,   KC_HASH,       KC_DLR,      KC_PERC,          KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
         TD(TD_LSFT_CAPS), KC_TILD, KC_QUOT, LSFT(KC_6),    XXXXXXX,     XXXXXXX,          KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS, KC_GRV,
-        KC_LCTL,          XXXXXXX, XXXXXXX, RALT(KC_COMM), XXXXXXX,     XXXXXXX,          KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, KC_TILD,
+        KC_LCTL,          XXXXXXX, XXXXXXX, RALT(KC_COMM), XXXXXXX,     KC_PSCR,          KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, KC_TILD,
                                             KC_LGUI,       MO(_CONFIG), KC_ENT,           KC_SPC,  _______, KC_LALT
     ),
 
     /* CONFIG layer
-    * ,------------------------------------------------------.   ,-----------------------------------------.
-    * |  boot  | rgb_pri |           |           |     |     |   |        |       |      |     |     |     |
-    * |--------+---------+-----------+-----------+-----+-----|   |--------+-------+------+-----+-----+-----|
-    * | rgb_tg | rgb_h_+ |  rgb_s_+  |  rgb_b_+  |     |     |   |  vol+  |  nxt  | ply  |     |     |     |
-    * |--------+---------+-----------+-----------+-----+-----|   |--------+-------+------+-----+-----+-----|
-    * | rgb_md | rgb_h_- |  rgb_s_-  |  rgb_b__  |     |     |   |  vol-  |  prv  |      |     |     |     |
-    * `------------------------------+-----------+-----+-----|   |--------+-------+------+-----------------'
-    *                                |    gui    | fn1 | ent |   |  spc   |  fn2  |  alt |
-    *                                `-----------+-----+-----'   `--------+-------+------'
+    * ,------------------------------------------------------------.   ,-----------------------------------------.
+    * |  boot  |   f1    |    f2     |    f3     |    f4     | f5  |   |   f6   |   f7  |  f8  | f9  | f10 |     |
+    * |--------+---------+-----------+-----------+-----------+-----|   |--------+-------+------+-----+-----+-----|
+    * | rgb_tg | rgb_h_+ |  rgb_s_+  |  rgb_b_+  |  rgb_pri  |     |   |  vol+  |  nxt  | ply  |     |     |     |
+    * |--------+---------+-----------+-----------+-----------+-----|   |--------+-------+------+-----+-----+-----|
+    * | rgb_md | rgb_h_- |  rgb_s_-  |  rgb_b__  |           |     |   |  vol-  |  prv  |      |     |     |     |
+    * `------------------------------+-----------+-----------+-----|   |--------+-------+------+-----------------'
+    *                                |    gui    |    fn1    | ent |   |  spc   |  fn2  |  alt |
+    *                                `-----------+-----------+-----'   `--------+-------+------'
     */
 
     [_CONFIG] = LAYOUT_split_3x6_3(
-        QK_BOOT, RGB_M_P, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX, XXXXXXX,          KC_VOLU, KC_MNXT, KC_MPLY, XXXXXXX, XXXXXXX, XXXXXXX,
+        QK_BOOT, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  ,          KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , XXXXXXX,
+        RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, RGB_M_P, XXXXXXX,          KC_VOLU, KC_MNXT, KC_MPLY, XXXXXXX, XXXXXXX, XXXXXXX,
         RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, XXXXXXX,          KC_VOLD, KC_MPRV, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                                    KC_LGUI, _______, KC_ENT,           KC_SPC,  _______, KC_LALT
     ),
